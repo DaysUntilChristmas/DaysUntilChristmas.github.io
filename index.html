@@ -10,7 +10,7 @@
     <meta content="https://embed.com/this-is-the-site-url" property="og:url" />
     <meta content="https://embed.com/embedimage.png" property="og:image" />
     <meta content="#DC143C" data-react-helmet="true" name="theme-color" />
-    <link rel="stylesheet" href="https://api-ssps.cajthaml.eu/file/global/css/reset_ld9mrCCm.css">
+    <link rel="stylesheet" href="reset.css">
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300&display=swap');
 
@@ -49,6 +49,7 @@
         border-color:beige;
         font-family: 'Readex Pro', sans-serif;
         transition: 0.25s;
+        margin-bottom: 20px;
     }
 
     .copy-button:hover {
@@ -62,13 +63,22 @@
         border-color: whitesmoke !important;
         transition: 0.25s;
     }
+
+    section {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        width: 50%;
+    }
     </style>
 </head>
 <body>
     <main>
         <p class="day-counter" id="main"></p>
-        <button id="copy" onclick="copyToClipboard()" class="copy-button">Copy to clipboard.</button>
-        <button id="share" onclick="share()" class="copy-button">Share me.</button>
+        <section>
+            <button id="copy" onclick="copyToClipboard()" class="copy-button">Copy to clipboard.</button>
+            <button id="share" onclick="share()" class="copy-button">Share me.</button>
+        </section>
     </main>
 </body>
 <script>
@@ -85,7 +95,7 @@
 
     daystillchristmas = ((24-((((seconds/60)+minutes)/60)+hours))/24)+(24-days);
 
-    document.getElementById('main').innerHTML = `It's <b>${daystillchristmas}</b> days until Christmas. 🎅`;
+    document.getElementById('main').innerHTML = `It's <b>${daystillchristmas.toPrecision(8)}</b> days until Christmas. 🎅`;
 }, 1000);
 
 function share()
