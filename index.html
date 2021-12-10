@@ -117,20 +117,26 @@
 function share()
 {
     navigator.clipboard.writeText(window.location.href);
-    document.getElementById('share').classList.add('clicked');
+    let element = document.getElementById('share');
+    element.classList.add('clicked');
+    element.innerText = "Copied.";
 
     setTimeout(()=>{
         document.getElementById('share').classList.remove('clicked');
+        element.innerText = "Share me.";
     }, 500);
 }
 
 function copyToClipboard()
 {
     navigator.clipboard.writeText(`It's ${daystillchristmas} days until Christmas. 🎅`);
-    document.getElementById('copy').classList.add('clicked');
+    let element = document.getElementById('copy');
+    element.classList.add('clicked');
+    element.innerText = "Copied.";
 
     setTimeout(()=>{
         document.getElementById('copy').classList.remove('clicked');
+        element.innerText = "Copy to clipboard.";
     }, 500);
 }
 </script>
