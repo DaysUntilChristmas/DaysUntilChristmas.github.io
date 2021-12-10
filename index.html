@@ -8,7 +8,7 @@
     <meta content="Days until Christmas" property="og:title" />
     <meta content="Accurate number of days until christmas." property="og:description" />
     <meta content="https://daysuntilchristmas.github.io/index.html" property="og:url" />
-    <meta content="https://embed.com/embedimage.png" property="og:image" />
+    <meta content="https://daysuntilchristmas.github.io/santa.png" property="og:image" />
     <meta content="#DC143C" data-react-helmet="true" name="theme-color" />
     <link rel="stylesheet" href="reset.css">
     <style>
@@ -83,20 +83,36 @@
 </body>
 <script>
     var daystillchristmas = 0;
+    let christmas = new Date();
+    christmas.setDate(24);
+    christmas.setMonth(11);
+    christmas.setHours(0);
+    christmas.setMinutes(0);
+    christmas.setSeconds(0);
+    christmas.setMilliseconds(0);
+
+    start();
+
+    function start()
+    {
+
+        let diff = christmas - Date.now(); // ms
+        diff /= 1000 * 60 * 60 * 24;
+
+        daystillchristmas = diff;
+
+        document.getElementById('main').innerHTML = `It's <b>${diff.toPrecision(10)}</b> days until Christmas. 🎅`;
+    }
 
     setInterval(()=> {
-    let d = new Date();
 
-    let seconds = d.getSeconds();
-    let minutes = d.getMinutes();
-    let hours = d.getHours();
-    let days = d.getDate()+1;
+    let diff = christmas - Date.now(); // ms
+    diff /= 1000 * 60 * 60 * 24;
 
+    daystillchristmas = diff;
 
-    daystillchristmas = ((24-((((seconds/60)+minutes)/60)+hours))/24)+(24-days);
-
-    document.getElementById('main').innerHTML = `It's <b>${daystillchristmas.toPrecision(8)}</b> days until Christmas. 🎅`;
-}, 1000);
+    document.getElementById('main').innerHTML = `It's <b>${diff.toPrecision(10)}</b> days until Christmas. 🎅`;
+}, 100);
 
 function share()
 {
