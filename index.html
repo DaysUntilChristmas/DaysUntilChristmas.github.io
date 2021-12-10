@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Days until Christmas.</title>
+    <meta content="Days until Christmas" property="og:title" />
+    <meta content="Accurate number of days until christmas." property="og:description" />
+    <meta content="https://embed.com/this-is-the-site-url" property="og:url" />
+    <meta content="https://embed.com/embedimage.png" property="og:image" />
+    <meta content="#DC143C" data-react-helmet="true" name="theme-color" />
+    <link rel="stylesheet" href="https://api-ssps.cajthaml.eu/file/global/css/reset_ld9mrCCm.css">
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300&display=swap');
+
+    body {
+        width: 100vw;
+        height: 100vh;
+        list-style-position: inside;
+        font-family: 'Readex Pro', sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 48px;
+    }
+
+    main {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    b {
+        font-weight: bolder;
+    }
+
+    .day-counter {
+        padding: 20px;
+    }
+
+    .copy-button {
+        background-color:oldlace;
+        padding: 10px;
+        border-radius: 5px;
+        border-style: solid;
+        color: black;
+        border-color:beige;
+        font-family: 'Readex Pro', sans-serif;
+        transition: 0.25s;
+    }
+
+    .copy-button:hover {
+        background-color:linen;
+        border-color: black;
+        transition: 0.25s;
+    }
+
+    .clicked {
+        background-color:crimson !important;
+        border-color: whitesmoke !important;
+        transition: 0.25s;
+    }
+    </style>
+</head>
+<body>
+    <main>
+        <p class="day-counter" id="main"></p>
+        <button id="copy" onclick="copyToClipboard()" class="copy-button">Copy to clipboard.</button>
+        <button id="share" onclick="share()" class="copy-button">Share me.</button>
+    </main>
+</body>
+<script>
+    var daystillchristmas = 0;
+
+    setInterval(()=> {
+    let d = new Date();
+
+    let seconds = d.getSeconds();
+    let minutes = d.getMinutes();
+    let hours = d.getHours();
+    let days = d.getDate()+1;
+
+
+    daystillchristmas = ((24-((((seconds/60)+minutes)/60)+hours))/24)+(24-days);
+
+    document.getElementById('main').innerHTML = `It's <b>${daystillchristmas}</b> days until Christmas. 🎅`;
+}, 1000);
+
+function share()
+{
+    navigator.clipboard.writeText(window.location.href);
+}
+
+function copyToClipboard()
+{
+    navigator.clipboard.writeText(`It's ${daystillchristmas} days until Christmas. 🎅`);
+    document.getElementById('copy').classList.add('clicked');
+
+    setTimeout(()=>{
+        document.getElementById('copy').classList.remove('clicked');
+    }, 500);
+}
+</script>
+</html>
