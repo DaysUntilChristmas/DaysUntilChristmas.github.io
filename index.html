@@ -100,7 +100,7 @@
 
     function start()
     {
-        if((new Date).getDate() > 24 && (new Date).getMonth() === 11) { christmas.setYear((new Date).getYear() + 1) }
+        if(christmas - Date.now() < 0) { christmas.setYear(christmas.getYear() + 1) }
         let diff = christmas - Date.now(); // ms
         diff /= 1000 * 60 * 60 * 24;
 
@@ -110,7 +110,7 @@
     }
 
     setInterval(()=> {
-    if(christmas - Date.now() < 0) { christmas.setYear((new Date).getYear() + 1) }
+    if(christmas - Date.now() < 0) { christmas.setYear(christmas.getYear() + 1) }
     let diff = christmas - Date.now(); // ms
     diff /= 1000 * 60 * 60 * 24;
 
